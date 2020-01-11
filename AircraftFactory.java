@@ -9,9 +9,9 @@ class AircraftFactory {
             case "Baloon":
                 return new Baloon(name, new Coordinates(longtitude, latitude, height));
             default:
-                // TODO throw exception
                 System.out.println("invalid type");
         }
         return null;
     }
+
 }
