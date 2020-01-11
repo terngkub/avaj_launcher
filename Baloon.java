@@ -1,24 +1,30 @@
 class Baloon extends Aircraft implements Flyable {
+
     private WeatherTower weatherTower;
 
     Baloon(String name, Coordinates coordinates) {
         super(name, coordinates);
     }
 
+    public String toString()
+    {
+        return "Baloon#" + name + "(" + id + ")";
+    }
+
     public void updateConditions() {
         String weather = weatherTower.getWeather(coordinates);
         switch (weather) {
             case "RAIN":
-                System.out.println("baloon rain");
+                logCondition("rain");
                 break;
             case "FOG":
-                System.out.println("baloon fog");
+                logCondition("fog");
                 break;
             case "SUN":
-                System.out.println("baloon sun");
+                logCondition("sun");
                 break;
             case "SNOW":
-                System.out.println("baloon snow");
+                logCondition("snow");
                 break;
             default:
                 System.out.println("invalid weather");

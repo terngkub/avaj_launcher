@@ -1,15 +1,21 @@
 import java.util.ArrayList;
 
-class Tower {
+public abstract class Tower {
 
     private ArrayList<Flyable> observers = new ArrayList<Flyable>();
 
     public void register(Flyable flyable) {
         observers.add(flyable);
-        System.out.println("Tower says: registered to weather tower");
+        log(flyable, "registered to");
     }
 
     public void unregister(Flyable flyable) {
+        observers.remove(flyable);
+        log(flyable, "unregistered from");
+    }
+
+    private void log(Flyable flyable, String message) {
+        System.out.println("Tower says: " + flyable.toString() + " " + message + " weather tower");
     }
 
     protected void conditionChanged() {

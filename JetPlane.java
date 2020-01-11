@@ -1,24 +1,30 @@
 class JetPlane extends Aircraft implements Flyable {
+
     private WeatherTower weatherTower;
 
     JetPlane(String name, Coordinates coordinates) {
         super(name, coordinates);
     }
 
+    public String toString()
+    {
+        return "JetPlane#" + name + "(" + id + ")";
+    }
+
     public void updateConditions() {
         String weather = weatherTower.getWeather(coordinates);
         switch (weather) {
             case "RAIN":
-                System.out.println("jetplane rain");
+                logCondition("rain");
                 break;
             case "FOG":
-                System.out.println("jetplane fog");
+                logCondition("fog");
                 break;
             case "SUN":
-                System.out.println("jetplane sun");
+                logCondition("sun");
                 break;
             case "SNOW":
-                System.out.println("jetplane snow");
+                logCondition("snow");
                 break;
             default:
                 System.out.println("invalid weather");

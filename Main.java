@@ -10,7 +10,13 @@ class Main {
         c.registerTower(weatherTower);
 
         weatherTower.changeWeather();
+
+        weatherTower.unregister(a);
         weatherTower.changeWeather();
+
+        weatherTower.unregister(b);
         weatherTower.changeWeather();
+
+        weatherTower.unregister(c);
     }
 }

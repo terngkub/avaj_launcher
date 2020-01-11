@@ -1,24 +1,30 @@
 class Helicopter extends Aircraft implements Flyable {
+
     private WeatherTower weatherTower;
 
     Helicopter(String name, Coordinates coordinates) {
         super(name, coordinates);
     }
 
+    public String toString()
+    {
+        return "Helicopter#" + name + "(" + id + ")";
+    }
+
     public void updateConditions() {
         String weather = weatherTower.getWeather(coordinates);
         switch (weather) {
             case "RAIN":
-                System.out.println("helicopter rain");
+                logCondition("rain");
                 break;
             case "FOG":
-                System.out.println("helicopter fog");
+                logCondition("fog");
                 break;
             case "SUN":
-                System.out.println("helicopter sun");
+                logCondition("sun");
                 break;
             case "SNOW":
-                System.out.println("helicopter snow");
+                logCondition("snow");
                 break;
             default:
                 System.out.println("invalid weather");

@@ -1,4 +1,4 @@
-class Aircraft {
+public abstract class Aircraft {
 
     protected long id;
     protected String name;
@@ -12,6 +12,10 @@ class Aircraft {
     }
 
     private long nextId() {
-        return idCounter++;
+        return ++idCounter;
+    }
+
+    protected void logCondition(String message) {
+        System.out.println(toString() + ": " + message);
     }
 }
