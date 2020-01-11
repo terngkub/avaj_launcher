@@ -11,11 +11,20 @@ public abstract class Aircraft {
         this.coordinates = coordinates;
     }
 
+    protected void updateCoordinates(int latitude, int longtitude, int height) {
+        int newHeight = coordinates.getHeight() + height;
+        
+        coordinates = new Coordinates(
+            coordinates.getLatitdue() + latitude,
+            coordinates.getLongtitude() + longtitude,
+            (newHeight > 100) ? 100 : newHeight);
+    }
+
     private long nextId() {
         return ++idCounter;
     }
 
-    protected void logCondition(String message) {
+    protected void log(String message) {
         System.out.println(toString() + ": " + message);
     }
 }

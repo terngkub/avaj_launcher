@@ -5,6 +5,7 @@ class Coordinates {
     private int height;
 
     Coordinates(int longtitude, int latitude, int height) {
+        // todo handle exception
         this.longtitude = longtitude;
         this.latitude = latitude;
         this.height = height;
