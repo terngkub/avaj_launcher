@@ -15,7 +15,7 @@ public abstract class Tower {
     }
 
     private void log(Flyable flyable, String message) {
-        System.out.println("Tower says: " + flyable.toString() + " " + message + " weather tower");
+        Logger.getInstance().log("Tower says: " + flyable.toString() + " " + message + " weather tower");
     }
 
     protected void conditionChanged() {

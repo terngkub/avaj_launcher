@@ -24,8 +24,7 @@ class Helicopter extends Aircraft implements Flyable {
                 updateCoordinates(0, 0, -12);
                 break;
             default:
-                // todo handle exception
-                System.out.println("invalid weather");
+                throw new RuntimeException("invalid weather");
         }
 
         if (coordinates.getHeight() < 0) {

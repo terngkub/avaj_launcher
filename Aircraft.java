@@ -25,6 +25,6 @@ public abstract class Aircraft {
     }
 
     protected void log(String message) {
-        System.out.println(toString() + ": " + message);
+        Logger.getInstance().log(toString() + ": " + message);
     }
 }
