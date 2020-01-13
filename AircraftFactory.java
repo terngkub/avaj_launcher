@@ -1,3 +1,5 @@
+import exception.InvalidAircraftException;
+
 class AircraftFactory {
 
     public static Flyable newAircraft(String type, String name, int longtitude, int latitude, int height) {
@@ -9,7 +11,7 @@ class AircraftFactory {
             case "Baloon":
                 return new Baloon(name, new Coordinates(longtitude, latitude, height));
             default:
-                throw new RuntimeException("invalid type");
+                throw new InvalidAircraftException("invalid aircraft type");
         }
     }
 

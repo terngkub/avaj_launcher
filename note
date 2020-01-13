@@ -1,0 +1,42 @@
+# done
+AircraftFactory.java
+line 12: invalid type
+
+# done
+Ballon.java
+Helicopter.java
+JetPlane.java
+line 27: invalid weather
+
+# done
+Coordinates.java
+line 8: negative coordinates
+line 8: height exceed limit ??? (or should I change it to 100)
+
+Logger.java
+check more info on FileNotFoundException and IOException from File and FileWriter
+also exit the program when get error ***
+
+Simulator.java
+line 27: have to exit the program ***
+line 36: file is empty
+line 50: doesn't have 4 fields
+line 55: invalid aircraft type
+line 62, 68, 73: negative coordination
+line 76: height above limit
+line 84: NumberFormatException
+
+Summary of all custom exception
+
+AvajLauncherException (parent) -> done
+
+InvalidAirCraftException -> done
+InvalidWeatherException
+
+NegativeCoordinatesException
+HeightAboveLimitException
+
+EmptyScenarioFileException
+NoAircraftException
+
+ParsingException (wrapper of NumberFormatException)

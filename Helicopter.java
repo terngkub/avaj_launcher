@@ -1,3 +1,5 @@
+import exception.InvalidWeatherException;
+
 class Helicopter extends Aircraft implements Flyable {
 
     private WeatherTower weatherTower;
@@ -24,7 +26,7 @@ class Helicopter extends Aircraft implements Flyable {
                 updateCoordinates(0, 0, -12);
                 break;
             default:
-                throw new RuntimeException("invalid weather");
+                throw new InvalidWeatherException("invalid weather type");
         }
 
         if (coordinates.getHeight() < 0) {
@@ -32,7 +34,6 @@ class Helicopter extends Aircraft implements Flyable {
             weatherTower.unregister(this);
         }
     }
-
 
     public void registerTower(WeatherTower weatherTower) {
         this.weatherTower = weatherTower;

@@ -1,3 +1,5 @@
+import exception.InvalidWeatherException;
+
 class Baloon extends Aircraft implements Flyable {
 
     private WeatherTower weatherTower;
@@ -24,7 +26,7 @@ class Baloon extends Aircraft implements Flyable {
                 updateCoordinates(0, 0, -15);
                 break;
             default:
-                throw new RuntimeException("invalid weather");
+                throw new InvalidWeatherException("invalid weather type");
         }
 
         if (coordinates.getHeight() < 0) {
