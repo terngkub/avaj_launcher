@@ -10,9 +10,7 @@ public class Logger {
 
     private Logger() {
         try {
-            if (logFile.exists()) {
-                logFile.delete();
-            } else {
+            if (!logFile.exists()) {
                 logFile.createNewFile();
             }
         } catch (IOException e) {
