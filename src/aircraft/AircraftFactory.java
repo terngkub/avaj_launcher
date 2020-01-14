@@ -1,6 +1,7 @@
+package aircraft;
 import exception.InvalidAircraftException;
 
-class AircraftFactory {
+public class AircraftFactory {
 
     public static Flyable newAircraft(String type, String name, int longtitude, int latitude, int height) {
         switch (type) {

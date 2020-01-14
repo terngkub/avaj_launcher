@@ -1,6 +1,8 @@
+package simulator;
+import aircraft.Flyable;
 import java.util.ArrayList;
 
-public abstract class Tower {
+abstract class Tower {
 
     private ArrayList<Flyable> observers = new ArrayList<Flyable>();
 

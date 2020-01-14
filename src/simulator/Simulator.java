@@ -1,18 +1,21 @@
+package simulator;
 import exception.*;
+import aircraft.Flyable;
+import aircraft.AircraftFactory;
 import java.io.File;
 import java.io.FileNotFoundException;
 import java.util.Arrays;
 import java.util.HashSet;
 import java.util.Scanner;
 
-class Simulator {
+public class Simulator {
     
     private static HashSet<String> aircraftTypes = new HashSet<String>(Arrays.asList("JetPlane", "Helicopter", "Baloon"));
 
     private int simulationNumber;
     private WeatherTower weatherTower = new WeatherTower();
 
-    Simulator(File file) {
+    public Simulator(File file) {
         parseFile(file);
     }
 

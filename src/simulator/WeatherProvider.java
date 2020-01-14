@@ -1,6 +1,8 @@
+package simulator;
+import aircraft.Coordinates;
 import java.util.Random;
 
-class WeatherProvider {
+public class WeatherProvider {
 
     private static WeatherProvider weatherProvider = new WeatherProvider();
     private static String[] weather = {"RAIN", "FOG", "SUN", "SNOW"};
@@ -8,7 +10,7 @@ class WeatherProvider {
 
     private WeatherProvider() {}
 
-    static public WeatherProvider getProvider() {
+    public static WeatherProvider getProvider() {
         return weatherProvider;
     }
 

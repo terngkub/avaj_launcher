@@ -1,3 +1,6 @@
+package aircraft;
+import simulator.Logger;
+
 public abstract class Aircraft {
 
     protected long id;

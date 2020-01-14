@@ -1,10 +1,12 @@
+package aircraft;
 import exception.InvalidWeatherException;
+import simulator.WeatherTower;
 
-class Helicopter extends Aircraft implements Flyable {
+class JetPlane extends Aircraft implements Flyable {
 
     private WeatherTower weatherTower;
 
-    Helicopter(String name, Coordinates coordinates) {
+    JetPlane(String name, Coordinates coordinates) {
         super(name, coordinates);
     }
 
@@ -14,22 +16,22 @@ class Helicopter extends Aircraft implements Flyable {
 
         switch (weather) {
             case "SUN":
-                updateCoordinates(0, 10, 2);
+                updateCoordinates(10, 0, 2);
                 break;
             case "RAIN":
-                updateCoordinates(0, 5, 0);
+                updateCoordinates(5, 0, 0);
                 break;
             case "FOG":
-                updateCoordinates(0, 1, 0);
+                updateCoordinates(1, 0, 0);
                 break;
             case "SNOW":
-                updateCoordinates(0, 0, -12);
+                updateCoordinates(0, 0, -7);
                 break;
             default:
                 throw new InvalidWeatherException("invalid weather type");
         }
 
-        if (coordinates.getHeight() < 0) {
+        if (coordinates.getHeight() <= 0) {
             log("landing");
             weatherTower.unregister(this);
         }
@@ -42,6 +44,6 @@ class Helicopter extends Aircraft implements Flyable {
 
     public String toString()
     {
-        return "Helicopter#" + name + "(" + id + ")";
+        return "JetPlane#" + name + "(" + id + ")";
     }
 }
