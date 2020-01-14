@@ -16,6 +16,7 @@ class Logger {
             }
         } catch (IOException e) {
             System.err.println("Error: " + e.getMessage());
+            System.exit(-1);
         }
     }
 
@@ -30,6 +31,7 @@ class Logger {
             writer.close();
         } catch (IOException e) {
             System.err.println("Error: " + e.getMessage());
+            System.exit(-1);
         }
     }
 }

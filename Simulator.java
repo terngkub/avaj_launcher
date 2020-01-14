@@ -1,3 +1,4 @@
+import exception.*;
 import java.io.File;
 import java.io.FileNotFoundException;
 import java.util.Arrays;
@@ -11,29 +12,32 @@ class Simulator {
     private int simulationNumber;
     private WeatherTower weatherTower = new WeatherTower();
 
-    Simulator(String fileName) {
-        parseFile(fileName);
+    Simulator(File file) {
+        parseFile(file);
     }
 
-    private void parseFile(String fileName) {
+    private void parseFile(File file) {
         try {
-            File file = new File(fileName);
             Scanner scanner = new Scanner(file);
-
             parseSimulationNumber(scanner);
             parseAircraft(scanner);
         }
         catch (FileNotFoundException e) {
             System.err.println("Error: " + e.getMessage());
+            System.exit(-1);
         }
     }
 
     private void parseSimulationNumber(Scanner scanner) {
-        if (scanner.hasNextLine()) {
-            String numberString = scanner.nextLine();
-            simulationNumber = Integer.parseInt(numberString);
-        } else {
-            throw new RuntimeException("file is empty");
+        try {
+            if (scanner.hasNextLine()) {
+                String numberString = scanner.nextLine();
+                simulationNumber = Integer.parseInt(numberString);
+            } else {
+                throw new EmptyScenarioFileException("file is empty");
+            }
+        } catch (NumberFormatException e) {
+            throw new exception.ParsingException("line 1 cannot parse the number: " + e.getMessage(), e);
         }
     }
     
@@ -47,33 +51,33 @@ class Simulator {
 
             // check number of field
             if (fields.length != 5) {
-                throw new RuntimeException("line " + lineNb + " doesn't have 4 fields");
+                throw new exception.ParsingException("line " + lineNb + " doesn't have 5 fields");
             }
 
             // check aircraft type
             if (!aircraftTypes.contains(fields[0])) {
-                throw new RuntimeException("line " + lineNb + " has invalid aircraft type");
+                throw new InvalidAircraftException("line " + lineNb + " has invalid aircraft type");
             }
 
             try {
                 // check latitude
                 int latitude = Integer.parseInt(fields[2]);
                 if (latitude < 0) {
-                    throw new RuntimeException("line " + lineNb + " negative coordination");
+                    throw new NegativeCoordinateException("line " + lineNb + " negative latitude");
                 }
 
                 // check longtitude
                 int longtitude = Integer.parseInt(fields[3]);
                 if (longtitude < 0) {
-                    throw new RuntimeException("line " + lineNb + " negative coordination");
+                    throw new NegativeCoordinateException("line " + lineNb + " negative longtitude");
                 }
 
                 // check height
                 int height = Integer.parseInt(fields[4]);
                 if (height < 0) {
-                    throw new RuntimeException("line " + lineNb + " negative coordination");
+                    throw new NegativeCoordinateException("line " + lineNb + " negative height");
                 } else if (height > 100) {
-                    throw new RuntimeException("line " + lineNb + " height more than 100");
+                    throw new HeightAboveLimitException("line " + lineNb + " height more than 100");
                 }
 
                 // create aircraft and register
@@ -81,10 +85,14 @@ class Simulator {
                 aircraft.registerTower(weatherTower);
 
             } catch(NumberFormatException e) {
-                throw new RuntimeException("line " + lineNb + " " + e.getMessage());
+                throw new exception.ParsingException("line " + lineNb + " cannot parse the number: " + e.getMessage(), e);
             }
 
             lineNb++;
+        }
+
+        if (lineNb == 2) {
+            throw new NoAircraftException("no aircraft in the scenario file");
         }
     }
 
